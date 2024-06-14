@@ -1,3 +1,5 @@
+# Copyright (c) 2024 Mohamed A. Oubarka
+# Licensed under the MIT License (see LICENSE file for details)
 
 def string_remapper(text: str, char_map: dict, escape_map: dict, escape_char: str = '\\') -> str:
 	"""
