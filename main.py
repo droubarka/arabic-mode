@@ -1,31 +1,31 @@
 #!/usr/bin/python3
 
-dict_1 = {
-	'a': 'ا', 'b': 'ب', 't': 'ت', 'j': 'ج',
-	'7': 'ح', 'd': 'د', 'r': 'ر', 'z': 'ز',
-	's': 'س', 'x': 'ش', '3': 'ع', '4': 'غ',
-	'f': 'ف', 'q': 'ق', 'k': 'ك', 'l': 'ل',
-	'm': 'م', 'n': 'ن', 'h': 'ه', 'w': 'و',
-	'y': 'ي'
-}
+def string_remapper(text: str, char_map: dict, escape_map: dict, escape_char: str = '\\') -> str:
+	"""
+	Remaps characters in a string according to two mapping dictionaries.
 
-dict_2 = {
-	'a': 'أ', 'k': 'خ', 'd': 'ذ', 's': 'ص',
-	't': 'ط', '8': 'ض', '9': 'ظ', '0': 'ث',
-}
+	Args:
+		text: The input string to be remapped.
+		char_map: A dictionary mapping characters to their replacements.
+		escape_map: A dictionary mapping escaped characters to their replacement.
+		escape_char: The escape character. Default to '\\' (backslash).
 
-def translate_to_arabic(text: str):
+	Returns:
+		The remapped string.
+	"""
 	translated_text = ""
 	escaped = False
 	for char in text:
-		if (not escaped) and ('\\' == char):
+		if (not escaped) and (char == escape_char):
 			escaped = True
 			continue
 
 		if not escaped:
-			translated_text += (mchar if (mchar:=dict_1.get(char)) else char)
+			translated_text += ( \
+				mapped_char if (mapped_char:=char_map.get(char)) else char)
 		else:
-			translated_text += (mchar if (mchar:=dict_2.get(char)) else char)
+			translated_text += ( \
+				mapped_char if (mapped_char:=escape_map.get(char)) else char)
 			escaped = False
 
 	return translated_text
