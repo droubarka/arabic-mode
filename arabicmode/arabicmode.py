@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 
 def string_remapper(text: str, char_map: dict, escape_map: dict, escape_char: str = '\\') -> str:
 	"""
